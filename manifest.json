@@ -1,8 +1,21 @@
 {
   "manifest_version": 3,
   "name": "Halal Sniper Pro",
-  "version": "2.0",
-  "description": "Highlights Whales and Flags Haram stocks on OpenInsider with Musaffa Halal verification and AI Analysis.",
+  "version": "2.1",
+  "description": "AI-powered stock research for Muslim traders. Filter for Halal compliance on OpenInsider, spot whale buys, and get AI analysis.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Open OpenInsider"
+  },
   "permissions": [
     "storage",
     "scripting"

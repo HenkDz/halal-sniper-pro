@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Extension Icons</title>
+    <style>
+        body { font-family: system-ui; padding: 40px; background: #1a1a2e; color: white; }
+        .icon-row { display: flex; gap: 20px; margin: 20px 0; align-items: center; }
+        canvas { background: #333; border-radius: 8px; }
+        button { background: #10B981; color: black; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #059669; }
+        a { color: #10B981; }
+    </style>
+</head>
+<body>
+    <h1>🎯 Halal Sniper Pro - Icon Generator</h1>
+    <p>Click the buttons to download PNG icons for Chrome Web Store submission.</p>
+    
+    <div class="icon-row">
+        <canvas id="icon16" width="16" height="16"></canvas>
+        <button onclick="download('icon16', 16)">Download icon16.png</button>
+    </div>
+    <div class="icon-row">
+        <canvas id="icon48" width="48" height="48"></canvas>
+        <button onclick="download('icon48', 48)">Download icon48.png</button>
+    </div>
+    <div class="icon-row">
+        <canvas id="icon128" width="128" height="128"></canvas>
+        <button onclick="download('icon128', 128)">Download icon128.png</button>
+    </div>
+    
+    <p style="margin-top: 40px;">After downloading, place the PNG files in the <code>icons/</code> folder.</p>
+
+    <script>
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const center = size / 2;
+            const outerRadius = size * 0.45;
+            const innerRadius = size * 0.3;
+            const dotRadius = size * 0.08;
+            const tickLength = size * 0.12;
+            const strokeWidth = Math.max(1, size * 0.04);
+            
+            // Gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#10B981');
+            gradient.addColorStop(1, '#059669');
+            
+            // Outer circle
+            ctx.beginPath();
+            ctx.arc(center, center, outerRadius, 0, Math.PI * 2);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Inner ring
+            ctx.beginPath();
+            ctx.arc(center, center, innerRadius, 0, Math.PI * 2);
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = strokeWidth;
+            ctx.stroke();
+            
+            // Center dot
+            ctx.beginPath();
+            ctx.arc(center, center, dotRadius, 0, Math.PI * 2);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            
+            if (size >= 48) {
+                // Crosshair ticks
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = strokeWidth;
+                ctx.lineCap = 'round';
+                
+                // Top
+                ctx.beginPath();
+                ctx.moveTo(center, center - outerRadius + tickLength * 0.5);
+                ctx.lineTo(center, center - innerRadius - tickLength * 0.5);
+                ctx.stroke();
+                
+                // Bottom
+                ctx.beginPath();
+                ctx.moveTo(center, center + innerRadius + tickLength * 0.5);
+                ctx.lineTo(center, center + outerRadius - tickLength * 0.5);
+                ctx.stroke();
+                
+                // Left
+                ctx.beginPath();
+                ctx.moveTo(center - outerRadius + tickLength * 0.5, center);
+                ctx.lineTo(center - innerRadius - tickLength * 0.5, center);
+                ctx.stroke();
+                
+                // Right
+                ctx.beginPath();
+                ctx.moveTo(center + innerRadius + tickLength * 0.5, center);
+                ctx.lineTo(center + outerRadius - tickLength * 0.5, center);
+                ctx.stroke();
+            }
+        }
+        
+        function download(id, size) {
+            const canvas = document.getElementById(id);
+            const link = document.createElement('a');
+            link.download = id + '.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Draw all icons on load
+        drawIcon(document.getElementById('icon16'), 16);
+        drawIcon(document.getElementById('icon48'), 48);
+        drawIcon(document.getElementById('icon128'), 128);
+    </script>
+</body>
+</html>

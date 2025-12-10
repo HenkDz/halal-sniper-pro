@@ -2,7 +2,15 @@
 // Handles cross-origin requests to Musaffa.com and AI APIs (Gemini/Grok)
 // 
 // FREE & OPEN SOURCE - BYOK (Bring Your Own Keys)
-// https://github.com/AhmedSniper/halal-sniper-pro
+// https://github.com/HenkDz/halal-sniper-pro
+
+// =========================================================================
+// 🎯 EXTENSION ICON CLICK HANDLER
+// Opens OpenInsider when the extension icon is clicked
+// =========================================================================
+chrome.action.onClicked.addListener((tab) => {
+    chrome.tabs.create({ url: 'http://openinsider.com' });
+});
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // =========================================================================
