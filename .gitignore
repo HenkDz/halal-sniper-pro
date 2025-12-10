@@ -1,0 +1,37 @@
+# ===================================
+# Halal Sniper Pro - Public Repo
+# ===================================
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment & Secrets
+.env
+.env.*
+.dev.vars
+backend/.dev.vars
+backend/.wrangler/
+
+# Build artifacts
+dist/
+*.zip
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Personal/Private (should not be in this repo)
+profile.md
+project.md
+SESSION_NOTES*.md
+reports/
+landing/

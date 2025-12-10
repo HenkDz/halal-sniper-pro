@@ -1,0 +1,42 @@
+# Halal Sniper Pro API
+# Cloudflare Worker Configuration
+
+name = "halal-sniper-api"
+main = "src/index.js"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# KV Namespaces for license and usage storage
+[[kv_namespaces]]
+binding = "LICENSES_KV"
+id = "bb53f6d402a94396bd3d8a35c324161c"
+
+[[kv_namespaces]]
+binding = "USAGE_KV"
+id = "efb4b037c9524310911873743d359558"
+
+# Environment Variables (set via wrangler secret)
+# Run these commands to set secrets:
+# wrangler secret put POLAR_ACCESS_TOKEN
+# wrangler secret put POLAR_WEBHOOK_SECRET
+# wrangler secret put GEMINI_API_KEY
+# wrangler secret put GROK_API_KEY
+
+[vars]
+ENVIRONMENT = "production"
+POLAR_ORGANIZATION = "nh-web-services"  # NH Web Services LTD
+POLAR_PRODUCT_ID = "23727bcf-7939-4187-bf96-ff4735502d18"  # Halal Sniper Pro
+
+# Usage Limits (per month)
+FREE_TIER_LIMIT = "3"                # Free tier: 3 analyses/month
+PRO_TIER_LIMIT = "50"                # Pro tier: 50 analyses/month ($9.99)
+# Premium can be added later: 200 analyses/month ($24.99)
+
+# Development environment
+[env.dev]
+name = "halal-sniper-api-dev"
+[env.dev.vars]
+ENVIRONMENT = "development"
+FREE_TIER_LIMIT = "10"
+PRO_TIER_LIMIT = "100"
+

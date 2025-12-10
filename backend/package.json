@@ -1,0 +1,19 @@
+{
+  "name": "halal-sniper-api",
+  "version": "1.0.0",
+  "description": "Backend API for Halal Sniper Pro - Subscription validation & AI proxy",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "keywords": ["halal", "stocks", "chrome-extension", "cloudflare-workers"],
+  "author": "Ahmed",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.99.0"
+  }
+}
+

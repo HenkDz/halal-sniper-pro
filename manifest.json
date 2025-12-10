@@ -1,0 +1,66 @@
+{
+  "manifest_version": 3,
+  "name": "Halal Sniper Pro",
+  "version": "2.0",
+  "description": "Highlights Whales and Flags Haram stocks on OpenInsider with Musaffa Halal verification and AI Analysis.",
+  "permissions": [
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://musaffa.com/*",
+    "*://www.musaffa.com/*",
+    "*://api.musaffa.com/*",
+    "*://openinsider.com/*",
+    "*://www.openinsider.com/*",
+    "*://generativelanguage.googleapis.com/*",
+    "*://api.x.ai/*",
+    "*://www.alphavantage.co/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://openinsider.com/*",
+        "*://www.openinsider.com/*"
+      ],
+      "js": [
+        "lib/jspdf.umd.min.js",
+        "modules/storage.js",
+        "modules/utils.js",
+        "modules/musaffa.js",
+        "modules/halal-scorer.js",
+        "modules/alpha-vantage.js",
+        "modules/report-templates.js",
+        "modules/pdf-export.js",
+        "modules/ai.js",
+        "modules/screener.js",
+        "modules/analyzer.js",
+        "modules/main.js"
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "*://musaffa.com/*",
+        "*://www.musaffa.com/*"
+      ],
+      "js": [
+        "lib/jspdf.umd.min.js",
+        "modules/storage.js",
+        "modules/utils.js",
+        "modules/halal-scorer.js",
+        "modules/alpha-vantage.js",
+        "modules/report-templates.js",
+        "modules/pdf-export.js",
+        "modules/ai.js",
+        "modules/musaffa-page.js",
+        "modules/musaffa-sidebar.js",
+        "modules/musaffa-main.js"
+      ],
+      "run_at": "document_end"
+    }
+  ]
+}
